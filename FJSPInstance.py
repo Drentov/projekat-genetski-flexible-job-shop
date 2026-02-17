@@ -10,13 +10,20 @@ class FJSPInstance:
         o = operation index within that job
     """
 
-    def __init__(self, jobs : list[list[list[tuple]]]):
+    def __init__(self, jobs : list[
+        list[ # of jobs
+            list[ #of operations
+                tuple #possible execution machines and their timing
+            ]
+        ]
+    ]):
 
         self.jobs = jobs
         self.num_jobs = len(jobs)
 
         self.num_machines = self._infer_number_of_machines()
         self.total_operations = sum(len(job) for job in jobs)
+        self.job_operation_offsets = self._compute_job_operation_offsets()
 
     def _infer_number_of_machines(self): # Just finds maximum machine id and infers total machine count.
 
@@ -44,25 +51,17 @@ class FJSPInstance:
     def operations_per_job(self):  #LIST containing an array of HOW MANY OPERATIONS each job has!
         return [len(job) for job in self.jobs]
 
+    def _compute_job_operation_offsets(self):
 
-if __name__ == "__main__":
+        offsets = []
+        current_index = 0
 
-    jobs_example = [
-        [  # Job 0
-            [(0, 3), (1, 2)],      # Operation 0 (M0, 3H), (M1, 2H), aka operation 1 can take pace on: (machine 0, would take 3 hours) OR on: (machine 1, would take 2 hours)
-            [(1, 4), (2, 5)]       # Operation 1
-        ],
-        [  # Job 1
-            [(0, 2), (2, 3)],      # Operation 0
-            [(1, 6)]               # Operation 1
-        ]
-    ]
+        for job in self.jobs:
+            offsets.append(current_index)
+            current_index += len(job)
 
-    instance = FJSPInstance(jobs_example)
+        return offsets # list where index j gives starting index of job j in Machine Selection array
 
-    print("Number of jobs:", instance.num_jobs)
-    print("Number of machines:", instance.num_machines)
-    print("Total operations:", instance.total_operations)
-    print("Operations per job:", instance.operations_per_job())
 
-    #"operacije jednog posla se moraju redom izvrsavati!"
+    def get_ms_index(self, job_id, operation_index):
+        return self.job_operation_offsets[job_id] + operation_index
