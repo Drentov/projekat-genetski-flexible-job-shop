@@ -2,7 +2,7 @@ from Chromosome import Chromosome
 from Decoder import Decoder
 from FJSPInstance import FJSPInstance
 from GeneticAlgorythm import GeneticAlgorythm
-from visualisation import plot_convergence
+from visualisation import plot_convergence, plot_gantt
 
 
 def trivial_and_verbose_test():
@@ -32,12 +32,12 @@ def trivial_and_verbose_test():
           instance.get_ms_index(1, 0))
 
 
-    chromosome = Chromosome.random_initialize(instance)
+    random_chromosome = Chromosome.random_initialize(instance)
 
-    makespan, start_times, finish_times, machine_sched = Decoder.decode(instance, chromosome)
+    makespan, start_times, finish_times, machine_sched = Decoder.decode(instance, random_chromosome)
 
-    print("OS:", chromosome.os)
-    print("MS:", chromosome.ms)
+    print("OS:", random_chromosome.os)
+    print("MS:", random_chromosome.ms)
     print("Makespan:", makespan)
     print("Machine schedules:", machine_sched)
 
@@ -53,6 +53,8 @@ def trivial_and_verbose_test():
     print("\nFINAL BEST MAKESPAN:", best.makespan)
 
     plot_convergence(best_hist, avg_hist)
+    makespan, _, _, machine_sched = Decoder.decode(instance, best)
+    plot_gantt(machine_sched, instance.num_machines, makespan)
 
 def realistic_test():
     jobs = [
@@ -89,6 +91,9 @@ def realistic_test():
     print("\nFINAL BEST MAKESPAN:", best.makespan)
 
     plot_convergence(best_hist, avg_hist)
+
+    makespan, _, _, machine_sched = Decoder.decode(instance, best)
+    plot_gantt(machine_sched, instance.num_machines, makespan)
 
 def heavy_test():
     # 10 jobs, 6 machines
@@ -209,7 +214,8 @@ def heavy_test():
     print("\nFINAL BEST MAKESPAN:", best.makespan)
 
     plot_convergence(best_hist, avg_hist)
-
+    makespan, _, _, machine_sched = Decoder.decode(instance, best)
+    plot_gantt(machine_sched, instance.num_machines, makespan)
 
 
 
