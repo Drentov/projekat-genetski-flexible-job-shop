@@ -69,10 +69,8 @@ def plot_gantt(machine_schedules, num_machines, makespan=None):
 
     ax.set_xlabel("Time")
     ax.set_ylabel("Machine")
-    ax.set_yticks(range(num_machines))
-    ax.set_yticklabels([f"M{i}" for i in range(num_machines)])
     ax.set_title("Flexible Job Shop Gantt Chart")
-    ax.grid(True)
+    ax.grid(False)
 
     plt.tight_layout()
     plt.show()
