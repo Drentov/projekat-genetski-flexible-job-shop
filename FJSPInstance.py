@@ -40,10 +40,10 @@ class FJSPInstance:
     def get_operation_options(self, job_id, operation_index): #Returns all possible machine options for a given operation.
         return self.jobs[job_id][operation_index]
 
-    def get_processing_time(self, job_id, operation_index, machine_id): #Returns processing time for given job, operation, and machine.
+    def get_processing_time(self, job_id, operation_index, given_machine_id): #Returns processing time for given job, operation, and machine.
 
         for machine_id, operation_time in self.jobs[job_id][operation_index]:
-            if machine_id == machine_id:
+            if machine_id == given_machine_id:
                 return operation_time
 
         raise ValueError("Machine not valid for this operation.")
