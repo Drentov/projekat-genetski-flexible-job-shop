@@ -171,8 +171,8 @@ class GeneticAlgorythm:
             self.population = new_population
             self.evaluate_population()
 
-            print(f"Generation {generation} "
-                  f"Best makespan: {self.population[0].makespan}")
+            if generation % 10 == 0:
+                print(f"Generation {generation}, Best makespan: {self.population[0].makespan}")
 
         return self.best_individual, self.best_history, self.avg_history
 
