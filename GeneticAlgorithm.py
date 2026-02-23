@@ -2,8 +2,6 @@ import random
 from Decoder import Decoder
 from Chromosome import Chromosome
 
-
-
 class GeneticAlgorithm:
 
     def __init__(self,
@@ -34,7 +32,6 @@ class GeneticAlgorithm:
         ]
 
     def evaluate_population(self):
-
         for individual in self.population:
             if individual.fitness is None:
                 Decoder.decode(self.instance, individual)
@@ -51,7 +48,7 @@ class GeneticAlgorithm:
         #OS mutation
         if random.random() < self.mutation_rate:
             i, j = random.sample(range(len(chromosome.os)), 2)
-            chromosome.os[i], chromosome.os[j] = chromosome.os[j], chromosome.os[i] #apparently this is fine in python!
+            chromosome.os[i], chromosome.os[j] = chromosome.os[j], chromosome.os[i]s
 
         #MS mutation
         if random.random() < self.mutation_rate:
