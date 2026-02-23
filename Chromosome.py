@@ -5,7 +5,7 @@ from FJSPInstance import FJSPInstance
 
 class Chromosome:
     """
-    Represents one individual solution in the genetic algorythm
+    Represents one individual solution in the genetic algorithm
 
     OS: Operation Sequence
     MS: Machine Selection (idx offset)

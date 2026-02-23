@@ -1,7 +1,7 @@
 from Chromosome import Chromosome
 from Decoder import Decoder
 from FJSPInstance import FJSPInstance
-from GeneticAlgorythm import GeneticAlgorythm
+from GeneticAlgorithm import GeneticAlgorithm
 from visualisation import plot_convergence, plot_gantt
 
 
@@ -42,7 +42,7 @@ def trivial_and_verbose_test():
     print("Machine schedules:", machine_sched)
 
 
-    gen_alg= GeneticAlgorythm(instance,
+    gen_alg= GeneticAlgorithm(instance,
                           population_size=30,
                           generations=50,
                           crossover_rate=0.8,
@@ -77,7 +77,7 @@ def realistic_test():
 
     instance = FJSPInstance(jobs)
 
-    ga = GeneticAlgorythm(
+    ga = GeneticAlgorithm(
         instance,
         population_size=50,
         generations=100,
@@ -200,7 +200,7 @@ def heavy_test():
 
     instance = FJSPInstance(instance_data)
 
-    ga = GeneticAlgorythm(
+    ga = GeneticAlgorithm(
         instance,
         population_size=50,
         generations=100,
@@ -384,7 +384,7 @@ def complex_test():
 
     instance = FJSPInstance(instance_data)
 
-    ga = GeneticAlgorythm(
+    ga = GeneticAlgorithm(
         instance,
         population_size=80,
         generations=200,

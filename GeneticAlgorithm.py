@@ -4,7 +4,7 @@ from Chromosome import Chromosome
 
 
 
-class GeneticAlgorythm:
+class GeneticAlgorithm:
 
     def __init__(self,
             instance,
