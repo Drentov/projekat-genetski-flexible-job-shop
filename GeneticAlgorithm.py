@@ -48,7 +48,7 @@ class GeneticAlgorithm:
         #OS mutation
         if random.random() < self.mutation_rate:
             i, j = random.sample(range(len(chromosome.os)), 2)
-            chromosome.os[i], chromosome.os[j] = chromosome.os[j], chromosome.os[i]s
+            chromosome.os[i], chromosome.os[j] = chromosome.os[j], chromosome.os[i]
 
         #MS mutation
         if random.random() < self.mutation_rate:
